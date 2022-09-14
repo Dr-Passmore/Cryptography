@@ -4,13 +4,45 @@ import logging
 class caesarCipher:
     def __init__(self):
         logging.info('ROT13 Cipher has been initialised')
+        # set up lowercase and upper case alphabets (use self.)
+        
     
-    def encrypt (self, text):
+    def encrypt (self, text, step):
         output = []
-        return output
+        
+        #add logging
+        
+        #loop per letter
+        
+        # index
+        
+        #encrypt (index + step)
+        
+        #newletter
+        
+        #append letter to output
+        
+        encryptedText = ''.join(map(str, output))
+        return encryptedText
     
-    def decrypt (self, text):
+    def decrypt (self, text, step):
         output = []
+        
+        #add logging
+        
+        #loop per letter
+        
+        # index
+        
+        #encrypt (index - step)
+        
+        #newletter
+        
+        #append letter to output
+        
+        decryptedText = ''.join(map(str, output))
+        return decryptedText
+    
         return output
 
 logging.basicConfig(filename='Cryptography.log', 
