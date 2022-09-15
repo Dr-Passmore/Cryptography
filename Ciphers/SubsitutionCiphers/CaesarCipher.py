@@ -1,5 +1,6 @@
 import logging
 import string
+from main import CipherTool
 
 class caesarCipher:
     def __init__(self, text, step):
@@ -7,8 +8,13 @@ class caesarCipher:
         # set up lowercase and upper case alphabets (use self.)
         self.uppercase = list(string.ascii_uppercase)
         self.lowercase = list(string.ascii_lowercase)
-        encryptedtext = caesarCipher.encrypt(self,text,step)
-        print(encryptedtext)
+        output = caesarCipher.encrypt(self,text,step)
+        #print(output)
+        
+        CipherTool.returnOutput(output)
+        
+        
+        
 
         # add check whether encrypt or decrypt
     
@@ -74,6 +80,6 @@ logging.basicConfig(filename='Cryptography.log',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
 
-text = 'This is a test'
-step = 6
-caesarCipher(text,step)
+#text = 'This is a test'
+#step = 6
+#caesarCipher(text,step)
