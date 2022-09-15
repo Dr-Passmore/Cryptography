@@ -1,6 +1,6 @@
 import logging
 import string
-from main import CipherTool
+import cryptography
 
 class ROT13Cipher:
     def __init__(self, text):
@@ -30,7 +30,7 @@ class ROT13Cipher:
         return output
     
     def output(output):
-        CipherTool.returnOutput(output)
+        cryptography.CipherTool.returnOutput(output)
 
 logging.basicConfig(filename='Cryptography.log', 
                     filemode='a', 

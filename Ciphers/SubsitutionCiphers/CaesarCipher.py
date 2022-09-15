@@ -1,6 +1,6 @@
 import logging
 import string
-from main import CipherTool
+import cryptography
 
 class caesarCipher:
     def __init__(self, text, step):
@@ -11,7 +11,7 @@ class caesarCipher:
         output = caesarCipher.encrypt(self,text,step)
         #print(output)
         
-        CipherTool.returnOutput(output)
+        cryptography.CipherTool.returnOutput(output)
         
         
         
