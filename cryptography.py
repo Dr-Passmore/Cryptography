@@ -16,10 +16,10 @@ class CipherTool:
         root.mainloop()
         logging.info('User Interface loaded')
         text = "This is a quick test"
-        step = 12
+        step = 4
         caesarCipher(text, step)
-        text = "This is a quick test"
-        ROT13Cipher(text)
+        #text = "This is a quick test"
+        #ROT13Cipher(text)
         
     def returnOutput(output):
         print(output)

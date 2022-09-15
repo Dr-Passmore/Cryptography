@@ -12,8 +12,11 @@ class caesarCipher:
         #print(output)
         
         cryptography.CipherTool.returnOutput(output)
+        text = output
+        output = caesarCipher.decrypt(self,text,step)
+        #print(output)
         
-        
+        cryptography.CipherTool.returnOutput(output)
         
 
         # add check whether encrypt or decrypt
@@ -57,16 +60,36 @@ class caesarCipher:
         output = []
         
         #add logging
+        logging.info('Caesar Cipher decryption has commenced using a step of {}'.format(step))
         
         #loop per letter
+        for letter in text:
+            if letter in self.uppercase:
+                # index
+                index = self.uppercase.index(letter)
+                #decrypt (index - step)
+                decrypt = (index - step)%26
+                #newletter
+                newletter = self.uppercase[decrypt]
+                #append letter to output
+                output.append(newletter)
+            elif letter in self.lowercase:
+                # index
+                index = self.lowercase.index(letter)
+                #decrypt (index - step)
+                decrypt = (index - step)%26
+                #newletter
+                newletter = self.lowercase[decrypt]
+                #append letter to output
+                output.append(newletter)  
+            else:
+                output.append(letter) 
         
-        # index
         
-        #encrypt (index - step)
         
-        #newletter
         
-        #append letter to output
+        
+        
         
         decryptedText = ''.join(map(str, output))
         return decryptedText
