@@ -1,9 +1,12 @@
+import imp
 import logging
 import tkinter as tk
 from tkinter import messagebox, Button
 from turtle import back
+from Ciphers.SubsitutionCiphers.AtbashCipher import atbashCipher
 from Ciphers.SubsitutionCiphers.CaesarCipher import caesarCipher
 from Ciphers.SubsitutionCiphers.ROT13Cipher import ROT13Cipher
+from Ciphers.SubsitutionCiphers.ROT47Cipher import ROT47Cipher
 #from Ciphers.test import testing
 
 

@@ -2,14 +2,17 @@ import string
 import logging
 import cryptography
 
-class atbashCipher:
+class ROT47Cipher:
     def __init__(self, text, encrypt):
-        #Mirrored alphabet A = Z, Y = B. Dictionary approach would work well
-        logging.info('Atbash Cipher has been initialised')
+        #Encodes all ASCII visible letters (Character 33 '!' to 126 '~') and shifts them by an index change of 47
+        #"This is a test!" becomes "%9:D :D 2 E6DEP" 
+        logging.info('ROT47 Cipher has been initialised')
         
     def encrypt (text, encrypt):
-        #only requires one. A IF statement using encyrpt True or False can be used to update logging info
         logging.info('encrypt')
+        
+    def decrypt (text, encrypt):
+        logging.info('decrypt')
         
     def output(output):
         logging.info('Returning message')
