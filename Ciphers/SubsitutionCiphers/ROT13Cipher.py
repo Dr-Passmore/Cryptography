@@ -3,14 +3,18 @@ import string
 import cryptography
 
 class ROT13Cipher:
-    def __init__(self, text):
+    def __init__(self, text, encrypt):
         logging.info('ROT13 Cipher has been initialised')
         lowercase = list(string.ascii_lowercase)
         uppercase = list(string.ascii_uppercase)
-        output = ROT13Cipher.encrypt(self, text, lowercase, uppercase)
+        output = ROT13Cipher.encrypt(self, text, lowercase, uppercase, encrypt)
         ROT13Cipher.output(output)
     
-    def encrypt (self, text, lowercase, uppercase):
+    def encrypt (self, text, lowercase, uppercase, encrypt):
+        if encrypt == True:
+            logging.info('Encrypting message')
+        else:
+            logging.info('Decrypting message')
         output = []
         for letter in text:
             if letter in lowercase:
@@ -30,6 +34,7 @@ class ROT13Cipher:
         return output
     
     def output(output):
+        logging.info('Returning message')
         cryptography.CipherTool.returnOutput(output)
 
 logging.basicConfig(filename='Cryptography.log', 

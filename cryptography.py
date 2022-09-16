@@ -18,8 +18,12 @@ class CipherTool:
         text = "This is a quick test"
         step = 4
         caesarCipher(text, step)
-        #text = "This is a quick test"
-        #ROT13Cipher(text)
+        text = "This is a quick test"
+        encrypt = True
+        ROT13Cipher(text, encrypt)
+        text = "Guvf vf n dhvpx grfg"
+        encrypt = False
+        ROT13Cipher(text, encrypt)
         
     def returnOutput(output):
         print(output)
