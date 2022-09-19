@@ -11,12 +11,15 @@ class AffineCipher:
         logging.info('Affine Cipher has been initialised')
         uppercase = list(string.ascii_uppercase)
         lowercase = list(string.ascii_lowercase)
-        key = [5, 12]
+        key = [5, 8]
         
         output = AffineCipher.encrypt(key, text, uppercase, lowercase)
         output = ''.join(map(str, output))
         print (output)
-        
+        text = output
+        output = AffineCipher.decrypt(key, text, uppercase, lowercase)
+        output = ''.join(map(str, output))
+        print (output)
         
     def encrypt (key, text, uppercase, lowercase):
         #only requires one. A IF statement using encyrpt True or False can be used to update logging info
@@ -40,6 +43,25 @@ class AffineCipher:
                 output.append(letter)
         return output
         
+    def decrypt (key, text, uppercase, lowercase):
+        output = []
+        decryptkey = 26 - key[0] 
+        for letter in text:
+            if letter in lowercase:
+                index = lowercase.index(letter)
+                decrypt = (decryptkey *(index - key[1])) % 26
+                #
+                newletter = lowercase[decrypt]
+                output.append(newletter)
+            elif letter in uppercase:
+                index = uppercase.index(letter)
+                decrypt = (decryptkey *(index - key[1])) % 26
+                newletter = uppercase[decrypt]
+                output.append(newletter)
+            else:
+                output.append(letter)
+        return output
+                
     def output(output):
         logging.info('Returning message')
         cryptography.CipherTool.returnOutput(output)
