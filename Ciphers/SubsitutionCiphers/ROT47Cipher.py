@@ -9,16 +9,29 @@ class ROT47Cipher:
         #"This is a test!" becomes "%9:D :D 2 E6DEP" 
         logging.info('ROT47 Cipher has been initialised')
         self.ASCII = []
-        for character in range(32,127):
+        for character in range(33,127):
             letter = chr(character)
             self.ASCII.append(letter)
         if encrypt == True:
-            ROT47Cipher.encrypt(self, text)
+            output = ROT47Cipher.encrypt(self, text)
         else:
-            ROT47Cipher.decrypt(self, text)
+            output = ROT47Cipher.decrypt(self, text)
+        print
+        output = ''.join(map(str, output))
+        print(output)
         
     def encrypt (self, text):
         logging.info('encrypt')
+        output = []
+        for letter in text:
+            if letter in self.ASCII:
+                index = self.ASCII.index(letter)
+                encrypt = (index + 47) % 94
+                newletter = self.ASCII[encrypt]
+                output.append(newletter)
+            else:
+                output.append(letter)
+        return output
         
     def decrypt (self, text):
         logging.info('decrypt')
@@ -33,7 +46,7 @@ logging.basicConfig(filename='Cryptography.log',
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-text = "Cat"
+text = "Needs to be 20% cooler"
 encrypt = True
 
 ROT47Cipher(text, encrypt)
