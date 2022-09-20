@@ -35,6 +35,16 @@ class ROT47Cipher:
         
     def decrypt (self, text):
         logging.info('decrypt')
+        output = []
+        for letter in text:
+            if letter in  self.ASCII:
+                index = self.ASCII.index(letter)
+                decrypt = (index - 47) % 94
+                newletter= self.ASCII[decrypt]
+                output.append(newletter)
+            else:
+                output.append(letter)
+        return output
         
     def output(output):
         logging.info('Returning message')
@@ -49,4 +59,8 @@ logging.basicConfig(filename='Cryptography.log',
 text = "Needs to be 20% cooler"
 encrypt = True
 
+ROT47Cipher(text, encrypt)
+
+text = "}665D E@ 36 a_T 4@@=6C"
+encrypt = False
 ROT47Cipher(text, encrypt)
