@@ -22,12 +22,24 @@ class BaconianCipher:
             output = BaconianCipher.encrypt(self, text, letters)
         else:
             output = BaconianCipher.decrypt(self, text, letters)
-        
+        output = ''.join(map(str, output))
         BaconianCipher.output(output)
         
     def encrypt(self, text, letter):
         logging.info('Encrypting text')
-        
+        if letter == True:
+            cipher = self.letterCipher
+        else:
+            cipher = self.binaryCipher
+        output = []
+        for letter in text:
+            if letter in cipher:
+                encrypt = cipher[letter]
+                output.append(encrypt)
+            else:
+                output.append(letter)
+        return output
+    
     def decrypt(self, text, letter):
         logging.info('Decrypting text')
         
