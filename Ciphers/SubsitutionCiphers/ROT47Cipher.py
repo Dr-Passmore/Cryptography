@@ -51,7 +51,7 @@ class ROT47Cipher:
         return output
         
     def output(output):
-        sample = output[0:15]
+        sample = output[0:30]
         logging.info('Returning message: {}...'.format(sample))
         cryptography.CipherTool.returnOutput(output)
         
