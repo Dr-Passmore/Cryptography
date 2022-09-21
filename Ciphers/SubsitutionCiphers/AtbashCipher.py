@@ -3,7 +3,7 @@ import logging
 #import cryptography
 
 class atbashCipher:
-    def __init__(self, text, encrypt):
+    def __init__(self, text):
         #Mirrored alphabet A = Z, Y = B. Dictionary approach would work well
         lowercase = list(string.ascii_lowercase)
         lowercaseReverse = list(string.ascii_lowercase)
@@ -15,17 +15,27 @@ class atbashCipher:
         uppercaseReverse.reverse()
         uppercaseDictionary = dict(zip(uppercase, uppercaseReverse))
 
-        combinedDictionary = lowercaseDictionary.copy()
-        combinedDictionary.update(uppercaseDictionary)
-        print(combinedDictionary)
+        self.combinedDictionary = lowercaseDictionary.copy()
+        self.combinedDictionary.update(uppercaseDictionary)
+        
+        #print(combinedDictionary)
         
         logging.info('Atbash Cipher has been initialised')
+        output = atbashCipher.encrypt(self, text)
+        output = ''.join(map(str, output))
+        print(output)
         
-    def encrypt (text, encrypt):
+    def encrypt (self, text):
+        output = []
+        logging.info('encrypt')
         #only requires one. A IF statement using encyrpt True or False can be used to update logging info
         for letter in text:
-            if 
-        logging.info('encrypt')
+            if letter in self.combinedDictionary:
+                newletter = self.combinedDictionary[letter]
+                output.append(newletter)
+            else:
+                output.append(letter)
+        return output
         
     def output(output):
         logging.info('Returning message')
@@ -37,6 +47,6 @@ logging.basicConfig(filename='Cryptography.log',
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-text = 'test'
+text = 'supercalifragilistic'
 encrypt = True
-atbashCipher(text,encrypt)
+atbashCipher(text)
