@@ -17,17 +17,16 @@ class BaconianCipher:
                              'U': '10100', 'V': '10101', 'W': '10110', 'X': '10111', 'Y': '11000', 
                              'Z': '11001'}
         text = text.upper()
-        
         if encrypt == True:
             output = BaconianCipher.encrypt(self, text, letters)
         else:
             output = BaconianCipher.decrypt(self, text, letters)
-        output = ''.join(map(str, output))
+        
         BaconianCipher.output(output)
         
-    def encrypt(self, text, letter):
+    def encrypt(self, text, letters):
         logging.info('Encrypting text')
-        if letter == True:
+        if letters == True:
             cipher = self.letterCipher
         else:
             cipher = self.binaryCipher
@@ -38,10 +37,39 @@ class BaconianCipher:
                 output.append(encrypt)
             else:
                 output.append(letter)
+        output = ''.join(map(str, output))
         return output
     
-    def decrypt(self, text, letter):
+    def decrypt(self, text, letters):
         logging.info('Decrypting text')
+        output = []
+        char = 0 
+        if letters == True:
+            cipher = self.letterCipher
+            text = text.lower()
+        else:
+            cipher = self.binaryCipher
+        
+        # This only works with binary... 
+        while True:
+            if (char < len(text)-4):
+                charblock = text[char:char + 5]
+                if charblock[0] in ('0', '1', 'a', 'b'):
+                    for letter, code  in cipher.items():
+                        if code == charblock:
+                            output.append(letter)
+                            char = char + 5
+                else:
+                    singlechar = text[char]
+                    output.append(singlechar)
+                    char = char + 1
+            else:
+                finalchar = text[char]
+                output.append(finalchar)
+                break
+        output = ''.join(map(str, output))
+        output = output.lower()
+        return output
         
     def output(output):
         sample = output[0:30]

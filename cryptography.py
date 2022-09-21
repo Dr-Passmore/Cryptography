@@ -6,6 +6,7 @@ from Ciphers.SubsitutionCiphers.AtbashCipher import atbashCipher
 from Ciphers.SubsitutionCiphers.CaesarCipher import caesarCipher
 from Ciphers.SubsitutionCiphers.ROT13Cipher import ROT13Cipher
 from Ciphers.SubsitutionCiphers.ROT47Cipher import ROT47Cipher
+from Ciphers.SubsitutionCiphers.BaconianCipher import BaconianCipher
 #from Ciphers.test import testing
 
 
@@ -29,6 +30,20 @@ class CipherTool:
         text = "}665D E@ 36 a_T 4@@=6C"
         encrypt = False
         ROT47Cipher(text, encrypt)
+        text = "When there’s no cops around, anything’s legal!"
+        letters = True
+        encrypt = True
+        BaconianCipher(text, encrypt, letters)
+        letters = False
+        BaconianCipher(text, encrypt, letters)
+        text = "babbaaabbbaabaaabbab baabbaabbbaabaabaaabaabaa’baaba abbababbba aaabaabbbaabbbbbaaba aaaaabaaababbbababaaabbabaaabb, aaaaaabbabbbaaabaabbaabbbabaaaabbabaabba’baaba ababbaabaaaabbaaaaaaababb!"
+        letters = True
+        encrypt = False
+        BaconianCipher(text, encrypt, letters)
+        text = "10110001110010001101 1001100111001001000100100’10010 0110101110 00010011100111110010 000001000101110101000110100011, 0000001101110001001100111010000110100110’10010 0101100100001100000001011!"
+        encrypt = False
+        letters = False
+        BaconianCipher(text, encrypt, letters)
                 
     def userInterface():
         logging.info('User Interface is being initialised')
