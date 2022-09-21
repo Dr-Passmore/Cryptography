@@ -1,4 +1,3 @@
-import imp
 import logging
 import tkinter as tk
 from tkinter import messagebox, Button
@@ -24,7 +23,13 @@ class CipherTool:
         text = "Guvf vf n dhvpx grfg"
         encrypt = False
         ROT13Cipher(text, encrypt)
-        
+        text = "Needs to be 20% cooler"
+        encrypt = True
+        ROT47Cipher(text, encrypt)
+        text = "}665D E@ 36 a_T 4@@=6C"
+        encrypt = False
+        ROT47Cipher(text, encrypt)
+                
     def userInterface():
         logging.info('User Interface is being initialised')
         root = tk.Tk()
