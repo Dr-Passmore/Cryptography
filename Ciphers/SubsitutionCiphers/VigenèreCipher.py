@@ -14,17 +14,22 @@ class VigenèreCipher:
             output = VigenèreCipher.encrypt(self, key, text)
         else:
             output = VigenèreCipher.decrypt(self, key, text)
-            
+         
         print(key)
         
     def keyProcessing(self, key):
         logging.info("Processing the key")
         key = list(key)
+        print (key)
         i = 0
-        for letter in key:
+        for item in key:
+            print(item)
+            print(key[i])
             if key[i] not in self.lowercase:
                 del key[i]
-            i += 1
+                continue
+            i = i + 1
+            
         return key
 
     def encrypt(self, key, text):
