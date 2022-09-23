@@ -15,10 +15,17 @@ class VigenèreCipher:
         else:
             output = VigenèreCipher.decrypt(self, key, text)
             
-        print(output)
+        print(key)
         
     def keyProcessing(self, key):
         logging.info("Processing the key")
+        key = list(key)
+        i = 0
+        for letter in key:
+            if key[i] not in self.lowercase:
+                del key[i]
+            i += 1
+        return key
 
     def encrypt(self, key, text):
         logging.info("Encrypting")
@@ -31,3 +38,8 @@ logging.basicConfig(filename='Cryptography.log',
                     level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
+
+encrypt = True
+text = "This is a test"
+key = "Test!"
+VigenèreCipher(key, text, encrypt)
