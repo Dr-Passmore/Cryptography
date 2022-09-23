@@ -24,6 +24,10 @@ class atbashCipher:
         output = atbashCipher.encrypt(self, text)
         output = ''.join(map(str, output))
         print(output)
+        text = output
+        output = atbashCipher.decrypt(self, text)
+        output = ''.join(map(str, output))
+        print(output)
         
     def encrypt (self, text):
         output = []
@@ -39,6 +43,19 @@ class atbashCipher:
         
     def output(output):
         logging.info('Returning message')
+
+    def decrypt(self, text):
+        output = []
+        logging.info('decrypt')
+        for letter in text:
+            if letter in self.combinedDictionary:
+                newletter = self.combinedDictionary[letter]
+                output.append(newletter)
+            else:
+                output.append(letter)
+        return output
+        
+        
         #cryptography.CipherTool.returnOutput(output)
         
 logging.basicConfig(filename='Cryptography.log', 
@@ -47,6 +64,6 @@ logging.basicConfig(filename='Cryptography.log',
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-text = 'supercalifragilistic'
+text = 'Time to boogey'
 encrypt = True
 atbashCipher(text)
