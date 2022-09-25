@@ -50,7 +50,6 @@ class BaconianCipher:
         else:
             cipher = self.binaryCipher
         
-        # This only works with binary... 
         while True:
             if (char < len(text)-4):
                 charblock = text[char:char + 5]
