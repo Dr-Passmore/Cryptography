@@ -19,7 +19,8 @@ class VigenèreCipher:
             else:
                 output = VigenèreCipher.decrypt(self, key, text)
             
-            print(key)
+            output = ''.join(map(str, output))
+            print(output)
         
     def keyProcessing(self, key):
         logging.info("Processing the key")
@@ -40,9 +41,7 @@ class VigenèreCipher:
         logging.info("Encrypting")
         output = []
         char = 0
-        keyLength = len(key)
         keycount = 0
-        
         while True:
             if (char < len(text)):
                 for letter in text:
@@ -70,15 +69,44 @@ class VigenèreCipher:
                     else:
                         output.append(letter)
             else:
-                print(char)
                 break
-        output = ''.join(map(str, output))
-        print (output)
         return output
         
     def decrypt(self, key, text):
         logging.info("Decrypting")
-        
+        output = []
+        char = 0
+        keycount = 0
+        while True:
+            if (char < len(text)):
+                for letter in text:
+                    char += 1
+                    if letter in self.lowercase:
+                        keyLetter = self.lowercase.index(key[keycount])
+                        index = self.lowercase.index(letter)
+                        keyLetter += 1
+                        encrypt = (index - keyLetter) %26
+                        newLetter = self.lowercase[encrypt]
+                        output.append(newLetter)
+                        keycount += 1
+                        if keycount == len(key):
+                            keycount = 0
+                    elif letter in self.uppercase:
+                        keyLetter = self.lowercase.index(key[keycount])
+                        index = self.uppercase.index(letter)
+                        keyLetter += 1
+                        encrypt = (index - keyLetter) % 26
+                        newLetter = self.uppercase[encrypt]
+                        output.append(newLetter)
+                        keycount += 1
+                        if keycount == len(key):
+                            keycount = 0
+                    else:
+                        output.append(letter)
+            else:
+                break
+        return output
+                        
     def output(output):
         sample = output[0:30]
         logging.info('Returning message: {}...'.format(sample))
@@ -90,8 +118,9 @@ logging.basicConfig(filename='Cryptography.log',
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-encrypt = True
+encrypt = False
 text = "This is a test. Hopefully works!234"
+text = "Uvpk hu f uwiu. Ehqsmmknd xghlp!234"
 key = "angry!! bear!!!!12345 paws"
 
 VigenèreCipher(key, text, encrypt)
