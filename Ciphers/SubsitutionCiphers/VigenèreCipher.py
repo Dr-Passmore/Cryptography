@@ -1,3 +1,4 @@
+from lib2to3.pgen2.token import NEWLINE
 import logging
 import string
 import cryptography
@@ -6,7 +7,7 @@ class VigenèreCipher:
     def __init__(self, key, text, encrypt):
         logging.info("The Vigenère Cipher has been initialised")
         key = key.lower()
-        self.lowercase = list(string.ascii_letters)
+        self.lowercase = list(string.ascii_lowercase)
         self.uppercase = list(string.ascii_uppercase)
         key = VigenèreCipher.keyProcessing(self, key)
         if key == None:
@@ -37,6 +38,43 @@ class VigenèreCipher:
 
     def encrypt(self, key, text):
         logging.info("Encrypting")
+        output = []
+        char = 0
+        keyLength = len(key)
+        keycount = 0
+        
+        while True:
+            if (char < len(text)):
+                for letter in text:
+                    char += 1
+                    if letter in self.lowercase:
+                        keyLetter = self.lowercase.index(key[keycount])
+                        index = self.lowercase.index(letter)
+                        keyLetter += 1
+                        encrypt = (index + keyLetter) %26
+                        newLetter = self.lowercase[encrypt]
+                        output.append(newLetter)
+                        keycount += 1
+                        if keycount == len(key):
+                            keycount = 0
+                    elif letter in self.uppercase:
+                        keyLetter = self.lowercase.index(key[keycount])
+                        index = self.uppercase.index(letter)
+                        keyLetter += 1
+                        encrypt = (index + keyLetter) % 26
+                        newLetter = self.uppercase[encrypt]
+                        output.append(newLetter)
+                        keycount += 1
+                        if keycount == len(key):
+                            keycount = 0
+                    else:
+                        output.append(letter)
+            else:
+                print(char)
+                break
+        output = ''.join(map(str, output))
+        print (output)
+        return output
         
     def decrypt(self, key, text):
         logging.info("Decrypting")
@@ -53,7 +91,7 @@ logging.basicConfig(filename='Cryptography.log',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
 encrypt = True
-text = "This is a test"
+text = "This is a test. Hopefully works!234"
 key = "angry!! bear!!!!12345 paws"
 
 VigenèreCipher(key, text, encrypt)
