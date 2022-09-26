@@ -7,6 +7,7 @@ from Ciphers.SubsitutionCiphers.CaesarCipher import caesarCipher
 from Ciphers.SubsitutionCiphers.ROT13Cipher import ROT13Cipher
 from Ciphers.SubsitutionCiphers.ROT47Cipher import ROT47Cipher
 from Ciphers.SubsitutionCiphers.BaconianCipher import BaconianCipher
+from Ciphers.SubsitutionCiphers.VigenèreCipher import VigenèreCipher
 #from Ciphers.test import testing
 
 
@@ -44,6 +45,12 @@ class CipherTool:
         encrypt = False
         letters = False
         BaconianCipher(text, encrypt, letters)
+        text = "Uvpk hu f uwiu. Ehqsmmknd xghlp!234"
+        key = "angry!! bear!!!!12345 paws"
+        VigenèreCipher(key, text, encrypt)
+        encrypt = True
+        text = "This is a test. Hopefully works!234"
+        VigenèreCipher(key, text, encrypt)
                 
     def userInterface():
         logging.info('User Interface is being initialised')

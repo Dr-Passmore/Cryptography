@@ -1,4 +1,3 @@
-from lib2to3.pgen2.token import NEWLINE
 import logging
 import string
 import cryptography
@@ -20,7 +19,7 @@ class VigenèreCipher:
                 output = VigenèreCipher.decrypt(self, key, text)
             
             output = ''.join(map(str, output))
-            print(output)
+            VigenèreCipher.output(output)
         
     def keyProcessing(self, key):
         logging.info("Processing the key")
@@ -117,10 +116,3 @@ logging.basicConfig(filename='Cryptography.log',
                     level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
-
-encrypt = False
-text = "This is a test. Hopefully works!234"
-text = "Uvpk hu f uwiu. Ehqsmmknd xghlp!234"
-key = "angry!! bear!!!!12345 paws"
-
-VigenèreCipher(key, text, encrypt)
