@@ -1,7 +1,6 @@
 import logging
 import tkinter as tk
 from tkinter import messagebox, Button
-from turtle import back
 from Ciphers.SubsitutionCiphers.AtbashCipher import atbashCipher
 from Ciphers.SubsitutionCiphers.CaesarCipher import caesarCipher
 from Ciphers.SubsitutionCiphers.ROT13Cipher import ROT13Cipher
@@ -49,7 +48,7 @@ class CipherTool:
         key = "angry!! bear!!!!12345 paws"
         VigenèreCipher(key, text, encrypt)
         encrypt = True
-        text = "This is a test. Hopefully works!234"
+        text = "Things will not calm down, Daniel Jackson. They will in fact calm up."
         VigenèreCipher(key, text, encrypt)
                 
     def userInterface():
