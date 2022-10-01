@@ -17,7 +17,7 @@ class RailFenceCipher:
         
     def encrypt(self, text, key):
         logging.info('Encrypting')
-        rail = [[" " for character in range(len(text))] 
+        rail = [["//" for character in range(len(text))] 
                 for rows in range (key)]
         
         row = 0 
@@ -37,8 +37,14 @@ class RailFenceCipher:
         for line in range(key):
             print("".join(rail[line]))
             
+        output = []
+        for line in range(key):
+            for character in range(len(text)):
+                if rail[line][character]!='//':
+                    output.append(rail[line][character])
         
-        
+        output = ''.join(map(str, output))
+        print (output)
         
        
     def decrypt(self, text):
