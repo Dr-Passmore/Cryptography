@@ -1,21 +1,46 @@
+from re import S
 import string
 import logging
 import cryptography
 
 class RailFenceCipher:
-    def __init__(self, text):
+    def __init__(self, text, key):
         logging.info('Rail-Fence Cipher Selected')
         #In the rail fence cipher, the plaintext is written downwards diagonally on successive "rails" of an imaginary fence, 
         #then moving up when the bottom rail is reached, down again when the top rail is reached, and so on until the whole plaintext is written out. 
         #The ciphertext is then read off in rows. 
-        #test becomes 'tets' 
-        #t
+        #tests becomes 'tsets' 
+        #t   s
         # e t
         #  s
+        RailFenceCipher.encrypt(self, text, key)
         
-    def encrypt(self, text):
+    def encrypt(self, text, key):
         logging.info('Encrypting')
-    
+        rail = [[" " for character in range(len(text))] 
+                for rows in range (key)]
+        
+        row = 0 
+        flag = 0 
+        
+        for character in range (len(text)):
+            rail[row][character] = text[character]
+            if row == 0:
+                flag = 0
+            elif row==key-1:
+                flag = 1
+            if flag == 0:
+                row += 1
+            else:
+                row-=1
+        
+        for line in range(key):
+            print("".join(rail[line]))
+            
+        
+        
+        
+       
     def decrypt(self, text):
         logging.info('Decrypting')
         
@@ -28,5 +53,6 @@ logging.basicConfig(filename='Cryptography.log',
                     level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
-text = "test"
-RailFenceCipher(text)
+text = "Home is where the heart is, but the stars are made of latinum."
+key = 9
+RailFenceCipher(text, key)
