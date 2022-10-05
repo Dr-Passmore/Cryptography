@@ -1,10 +1,12 @@
 from re import S
 import string
 import logging
+
+from rsa import encrypt
 import cryptography
 
 class RailFenceCipher:
-    def __init__(self, text, key):
+    def __init__(self, text, key, encrypt):
         logging.info('Rail-Fence Cipher Selected')
         #In the rail fence cipher, the plaintext is written downwards diagonally on successive "rails" of an imaginary fence, 
         #then moving up when the bottom rail is reached, down again when the top rail is reached, and so on until the whole plaintext is written out. 
@@ -13,8 +15,11 @@ class RailFenceCipher:
         #t   s
         # e t
         #  s
-        RailFenceCipher.encrypt(self, text, key)
-        
+        if encrypt == True:
+            RailFenceCipher.encrypt(self, text, key)
+        else:
+            RailFenceCipher.decrypt(self, text, key)
+    
     def encrypt(self, text, key):
         logging.info('Encrypting')
         rail = [["//" for character in range(len(text))] 
@@ -33,9 +38,9 @@ class RailFenceCipher:
                 row += 1
             else:
                 row-=1
-        
-        for line in range(key):
-            print("".join(rail[line]))
+            
+        #for line in range(key):
+            #print("".join(rail[line]))
             
         output = []
         for line in range(key):
@@ -47,8 +52,13 @@ class RailFenceCipher:
         print (output)
         
        
-    def decrypt(self, text):
+    def decrypt(self, text, key):
         logging.info('Decrypting')
+        rail = [["//" for character in range(len(text))] 
+                for rows in range (key)]
+        row = 0
+        col =0 
+        print (rail)
         
     def output(output):
         sample = output[0:30]
@@ -60,5 +70,9 @@ logging.basicConfig(filename='Cryptography.log',
                     format='%(asctime)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 text = "Home is where the heart is, but the stars are made of latinum."
-key = 9
-RailFenceCipher(text, key)
+key = 3
+encrypt = True
+RailFenceCipher(text, key, encrypt)
+text = "H weeaibtssedftmoei hr h er s u h tr r aeo aiu.msetht,teaam ln"
+encrypt = False
+RailFenceCipher(text, key, encrypt)
